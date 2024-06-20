@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']], // 解析行内公式
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],   //段内公式选择符
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
+<head>
+  <meta charset="utf-8">
+  <link rel="author" href="https://shilinyan99.github.io/AIDE">   <!-- author profile-->
+  <title>A Sanity Check for AI-generated Image Detection</title>
+  <meta name="description" content="A Sanity Check for AI-generated Image Detection">
+  <meta name="keywords" content="AI-generated Image Detection; A Sanity Check for AI-generated Image Detection; Chameleon Dataset; Anti-AIGC; Shilin Yan; Xiahohongshu Inc; Computer Vision">
+  
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="A Sanity Check for AI-generated Image Detection">
+  <meta property="og:title" content="A Sanity Check for AI-generated Image Detection"/>
+  <meta property="og:description" content="A Sanity Check for AI-generated Image Detection"/>
+  <meta property="og:url" content="https://shilinyan99.github.io/AIDE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="A Sanity Check for AI-generated Image Detection">
+  <meta name="twitter:description" content="A Sanity Check for AI-generated Image Detection">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="AI-generated Image Detection; A Sanity Check for AI-generated Image Detection; Chameleon Dataset; Anti-AIGC; Shilin Yan; Xiahohongshu Inc; Computer Vision">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  
+  <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="css/bulma-slider.min.css">
+  <link rel="stylesheet" href="css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="js/fontawesome.all.min.js"></script>
+  <script src="js/bulma-carousel.min.js"></script>
+  <script src="js/bulma-slider.min.js"></script>
+  <script src="js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">A Sanity Check for AI-generated Image Detection</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=2VhjOykAAAAJ&hl=en" target="_blank">Shilin Yan</a><sup>1</sup>,&nbsp;</span>
+                <span class="author-block">
+                  <a href="">Ouxiang Li</a><sup>2</sup>,&nbsp;</span>
+                <span class="author-block">
+                  <a href="">Jiayin Cai</a><sup>1</sup>,&nbsp;</span>
+                <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=vhPSOkEAAAAJ&hl=en&oi=ao" target="_blank">Yanbin Hao</a><sup>2</sup>,&nbsp;</span>
+                <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=G0Ow8j8AAAAJ&hl=en&oi=ao" target="_blank">Xiaolong Jiang</a><sup>1</sup>,&nbsp;</span>
+                <span class="author-block">
+                  <a href="" target="_blank">Yao Hu</a><sup>1</sup>,&nbsp;</span>
+                <span class="author-block">
+                    <a href="https://scholar.google.com/citations?user=Vtrqj4gAAAAJ&hl=en&oi=ao" target="_blank">Weidi Xie</a><sup>3</sup></span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">
+                      <sup>1</sup>Xiaohongshu Inc.&nbsp;&nbsp;&nbsp;&nbsp;
+                      <sup>2</sup>University of Science and Technology of China&nbsp;&nbsp;&nbsp;&nbsp;
+                      <sup>3</sup>Shanghai Jiao Tong University&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  </div>
+                  
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+<!--                       <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span> -->
+                      <!-- </a>
+                    </span> -->
+
+                    <!-- Supplementary PDF link -->
+                    <li class="grid">
+                      <div class="griditem">
+                    <a href="" target="_blank" class="imageLink"><img src="DemoImages/paper.png"></a><br><a href="" class="PaperLink">🔥Paper</a>
+                    </div>
+                      </li>
+                    <li class="mygrid">
+                        <div class="mygriditem">
+                      <a href="" target="_blank" class="DatasetLink"><img src="DemoImages/dataset.png"></a><br><a href="" target="_blank">🔥Dataset(preparing)</a>
+                      </div>
+                    </li>
+                    <li class="mygrid">
+                      <div class="mygriditem">
+                    <a href="https://github.com/shilinyan99/AIDE" target="_blank" class="CodeLink"><img src="DemoImages/github_pad.png"></a><br><a href="https://github.com/shilinyan99/AIDE" target="_blank">🔥Code</a>
+                    </div>
+                  </li>
+                  <!-- <span class="link-block">
+                      <a href="" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span> -->
+                      <!-- <span>🔥Dataset</span>
+                      </a>
+                  </span> -->
+                 
+                  <!-- <span class="link-block">
+                      <a href="" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                       <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span> -->
+                      <!-- <span>🔥Eval Server</span>
+                    </a>
+                  </span> --> 
+
+
+                <!-- ArXiv abstract Link -->
+                <!-- <span class="link-block">
+                  <a href="" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <center><img src="DemoImages/teaser.png" border="0" width="100%"></center>
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        <div align="center"><p style="text-align:justify; text-justify:inter-ideograph;width:100%">Figure 1. Two contemporary AI-generated image benchmarks, namely (a) AIGCDetect Benchmark and (b) GenImage Benchmark, where all images are generated from publicly available generators, including ProGAN (GAN-based), SD v1.4 (DM-based), and Midjourney (commercial API). These images are conditioned on simple prompts (e.g., <i>photo of a plane</i>) without delicate manual adjustments, thereby inclined to generate obvious anti-facts in consistency and semantics (marked with <span style="color: red;">red boxes</span>). In contrast, our <b>Chameleon</b> dataset in (c) aims to simulate real-world scenarios by collecting diverse images from online websites, where these online images are carefully adjusted by photographers and AI artists.
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p style="text-align:justify; text-justify:inter-ideograph;">
+            With the rapid development of generative models, discerning AI-generated content has evoked increasing attention from both industry and academia. In this paper, we conduct a sanity check on <b><i>"whether the task of AI-generated image detection has been solved"</i></b>. To start with, we present <b><code>Chameleon</code></b> dataset, consisting AI-generated images that are genuinely challenging for human perception. To quantify the generalization of existing methods, we evaluate 9 off-the-shelf AI-generated image detectors on <b><code>Chameleon</code></b> dataset. Upon analysis, almost all models classify AI-generated images as real ones. Later, we propose <b>AIDE</b>~(<b>A</b>I-generated <b>I</b>mage<b> DE</b>tector with Hybrid Features), which leverages multiple experts to simultaneously extract visual artifacts and noise patterns. Specifically, to capture the high-level semantics, we utilize CLIP to compute the visual embedding. This effectively enables the model to discern AI-generated images based on semantics or contextual information; Secondly, we select the highest frequency patches and the lowest frequency patches in the image, and compute the low-level patchwise features, aiming to detect AI-generated images by low-level artifacts, for example, noise pattern, anti-aliasing, etc. While evaluating on existing benchmarks, for example, AIGCDetectBenchmark and GenImage, AIDE achieves<b>+3.5</b>% and <b>+4.6</b>% improvements to state-of-the-art methods, and on our proposed challenging <b><code>Chameleon</code></b> benchmarks, it also achieves the promising results, despite this problem for detecting AI-generated images is far from being solved.
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- <section class="section" id="Visualization">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Visualization</h2>
+     <center>
+        <img src="DemoImages/webp/0442a954.webp" alt="0442a954" width="224" height="126" />&nbsp;
+        <img src="DemoImages/webp/d321dde4.webp" alt="d321dde4" width="224" height="126" />&nbsp;
+        <img src="DemoImages/webp/02221fb0.webp" alt="02221fb0" width="224" height="126" />&nbsp;
+        <img src="DemoImages/webp/bbe97d18.webp" alt="bbe97d18" width="224" height="126" />&nbsp;
+        
+
+        <img src="DemoImages/webp/002b4dce.webp" alt="002b4dce" width="224" height="126" />&nbsp;
+        <img src="DemoImages/webp/26ed56e6.webp" alt="26ed56e6" width="224" height="126" />&nbsp;
+        <img src="DemoImages/webp/c791ddbb.webp" alt="c791ddbb" width="224" height="126" />&nbsp;      
+        <img src="DemoImages/webp/e5e9eb29.webp" alt="e5e9eb29" width="224" height="126" />&nbsp;
+
+      </center>
+    </div>
+</section> -->
+
+
+
+<section class="section" id="Experiments">
+  <div class="container is-max-desktop content">
+  <h2 class="title">Experiments</h2>
+    <!-- <center> -->
+     We benchmark the state-of-the-art methods to the best of our knowledge, please see the <a href="" target="_blank">AIDE Report</a> for details. <br><br>
+    
+     <center><img src="DemoImages/b1-results.png" border="0" width="80%"></center>
+
+     <center><caption><b>TABLE 1. AIGCDetect Benchmark.</b> Accuracy (\%) of different detectors (rows) in detecting real and fake images from different generators (columns). 
+      GAN-Average and DM-Average are averaged over the first 8 and the last 8 test sets, respectively.</caption></center>
+      
+      <br>
+
+    <center><img src="DemoImages/b2-results.png" border="0" width="80%"></center>
+
+     <center><caption><b>TABLE 2. GenImage Benchmark.</b> Accuracy (\%) of different baselines (columns) in detecting real and fake images from different generators (rows). These methods are trained on 
+      real images from ImageNet and fake images generated by SD v1.4 and evaluated over eight generators.</caption></center>
+s
+      <br>
+
+      <center><img src="DemoImages/b3-results.png" border="0" width="80%"></center>
+
+     <center><caption><b>TABLE 3. Chameleon Benchmark.</b> Accuracy (\%) of different detectors (rows) in detecting real and fake images of <b><code>Chameleon</code></b> testset (rows). For each training dataset, the first row indicates the <b>average Acc</b> evaluated on the <b><code>Chameleon</code></b> testset, and the second row gives "<b>fake image Acc / real image Acc</b>" for detailed analysis.</caption></center>
+     
+
+    <!-- </center> -->
+    </div>
+</section>
+
+<!-- End image carousel -->
+<section class="section" id="Downloads">
+  <div class="container is-max-desktop content">
+  <h2 class="title">Downloads</h2>
+    <center>
+      <ul>
+        <li class="grid">
+          <div class="griditem">
+        <a href="" target="_blank" class="imageLink"><img src="DemoImages/paper.png"></a><br><a href="" class="imageLink">Technical Report</a>
+        </div>
+          </li>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <li class="mygrid">
+          <div class="mygriditem">
+        <a href="https://drive.google.com/drive/folders/18dki-y3bTdoLcoJgdvKmaiqcqlUfBgyA?usp=drive_link" target="_blank" class="imageLink"><img src="DemoImages/dataset.png"></a><br><a href="" target="_blank">🔥Dataset (preparing!)</a>
+        </div>
+          </li>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+
+<!--         <li li class="mygrid">
+          <div class="mygriditem">
+        <a href="" target="_blank" class="imageLink"><img src="static/DemoImages/codalab.png"></a><br><a href="https://codalab.lisn.upsaclay.fr/competitions/15928" target="_blank">Online Evaluation </a>
+        </div>
+          </li> -->
+
+        </ul><br><br>
+      
+    </center>
+    <!-- The dataset is avalibale on <a href="https://drive.google.com/drive/folders/1vChKHzbboP1k6wd6t95guxxURW3nIXBe?usp=sharing" target="_blank">Google Drive</a>, please kindly refer to <a href="https://github.com/shilinyan99/PanoVOS" target="_blank"><b>PanoVOS</b></a> for more details.
+    <pre><code><b>🚀 Download the dataset using <a href="https://pypi.org/project/gdown/" target="_blank">gdown</a> command:</b>
+  🎉 test.zip 5.88 GB
+  gdown https://drive.google.com/uc?id=178E1TYK7tgj-FXzgnjJyx9gZs2GhQBqr</code></pre> -->
+  
+    </div>
+
+
+<!--BibTex citation -->
+  <section class="section" id="Citation">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Citation</h2>
+      Please consider to cite AIDE if it helps your research.
+      <!-- <pre><code>
+
+</code></pre> -->
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+<section class="section" id="License">
+  <div class="container is-max-desktop content">
+  <h2 class="title">License</h2>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"  target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></br>
+AIDE is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 License</a>. 
+  <!-- </center> -->
+    </div>
+</section>
+
+<section class="section" id="Contact">
+  <div class="container is-max-desktop content">
+  <h2 class="title">Contact</h2>
+  Any questions, suggestions and feedback are welcomed. Please concat <a href="mailto:tattoo.ysl@gmail.com" target="_blank">tattoo.ysl@gmail.com</a> 
+  <!-- </center> -->
+    </div>
+</section>
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+
+            <center><font size=2>© Shilin Yan | Last updated: 20/06/2024</font></center>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
