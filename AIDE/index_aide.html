@@ -123,7 +123,7 @@
                       </li>
                     <li class="mygrid">
                         <div class="mygriditem">
-                      <a href="" target="_blank" class="DatasetLink"><img src="DemoImages/dataset.png"></a><br><a href="" target="_blank">🔥Dataset(preparing)</a>
+                      <a href="https://github.com/shilinyan99/AIDE/issues/7" target="_blank" class="DatasetLink"><img src="DemoImages/dataset.png"></a><br><a href="" target="_blank">🔥Dataset</a>
                       </div>
                     </li>
                     <li class="mygrid">
@@ -171,18 +171,20 @@
   </div>
 </section>
 
-
 <!-- Teaser video-->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <center><img src="DemoImages/teaser.png" border="0" width="100%"></center>
       <!-- <h2 class="subtitle has-text-centered"> -->
-        <div align="center"><p style="text-align:justify; text-justify:inter-ideograph;width:100%">Figure 1. Two contemporary AI-generated image benchmarks, namely (a) AIGCDetect Benchmark and (b) GenImage Benchmark, where all images are generated from publicly available generators, including ProGAN (GAN-based), SD v1.4 (DM-based), and Midjourney (commercial API). These images are conditioned on simple prompts (e.g., <i>photo of a plane</i>) without delicate manual adjustments, thereby inclined to generate obvious anti-facts in consistency and semantics (marked with <span style="color: red;">red boxes</span>). In contrast, our <b>Chameleon</b> dataset in (c) aims to simulate real-world scenarios by collecting diverse images from online websites, where these online images are carefully adjusted by photographers and AI artists.
+        <div align="center"><p style="text-align:justify; text-justify:inter-ideograph;width:100%">Figure 1. <b>Examples of images from the Chameleon dataset. </b> The most notable feature of Chameleon is <b>high-fidelity.</b>
     </div>
   </div>
 </section>
 <!-- End teaser video -->
+
+
+
 
 <!-- Paper abstract -->
 <section class="section hero is-light">
@@ -221,6 +223,26 @@
     </div>
 </section> -->
 
+<section class="section" id="Comparsion">
+  <div class="container is-max-desktop content">
+  <h2 class="title">Comparsion</h2>
+    <div class="hero-body">
+      <center><img src="DemoImages/comparsion.png" border="0" width="100%"></center>
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        <div align="center"><p style="text-align:justify; text-justify:inter-ideograph;width:100%">Figure 2. Two contemporary AI-generated image benchmarks, namely (a) AIGCDetect Benchmark and (b) GenImage Benchmark, where all images are generated from publicly available generators, including ProGAN (GAN-based), SD v1.4 (DM-based), and Midjourney (commercial API). These images are conditioned on simple prompts (e.g., <i>photo of a plane</i>) without delicate manual adjustments, thereby inclined to generate obvious anti-facts in consistency and semantics (marked with <span style="color: red;">red boxes</span>). In contrast, our <b>Chameleon</b> dataset in (c) aims to simulate real-world scenarios by collecting diverse images from online websites, where these online images are carefully adjusted by photographers and AI artists.</div>
+  </div>
+</section>
+
+<section class="section" id="Method">
+  <div class="container is-max-desktop content">
+  <h2 class="title">Method</h2>
+    <div class="hero-body">
+      <center><img src="DemoImages/AIDE.png" border="0" width="100%"></center>
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        <div align="center"><p style="text-align:justify; text-justify:inter-ideograph;width:100%">Figure 3. <b>Overview of AIDE.</b>It consists of a Patchwise Feature Extraction (PFE) module and a Semantic Fea- ture Embedding (SFE) module in a mixture of experts manner. In PFE module, the DCT Scoring module first calculates the DCT coefficients for each smashed patch and then performs a weighted sum of these coefficients (weights gradually increase as the color goes from light to dark).</div>
+  </div>
+</section>
+
 
 
 <section class="section" id="Experiments">
@@ -232,7 +254,7 @@
      <center><img src="DemoImages/b1-results.png" border="0" width="80%"></center>
 
      <center><caption><b>TABLE 1. AIGCDetect Benchmark.</b> Accuracy (\%) of different detectors (rows) in detecting real and fake images from different generators (columns). 
-      GAN-Average and DM-Average are averaged over the first 8 and the last 8 test sets, respectively.</caption></center>
+      The best result and the second-best result are marked in bold and underline, respectively.</caption></center>
       
       <br>
 
@@ -252,48 +274,12 @@ s
     </div>
 </section>
 
-<!-- End image carousel -->
-<section class="section" id="Downloads">
-  <div class="container is-max-desktop content">
-  <h2 class="title">Downloads</h2>
-    <center>
-      <ul>
-        <li class="grid">
-          <div class="griditem">
-        <a href="" target="_blank" class="imageLink"><img src="DemoImages/paper.png"></a><br><a href="https://arxiv.org/pdf/2406.19435" class="imageLink">Technical Report</a>
-        </div>
-          </li>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-        <li class="mygrid">
-          <div class="mygriditem">
-        <a href="https://drive.google.com/drive/folders/18dki-y3bTdoLcoJgdvKmaiqcqlUfBgyA?usp=drive_link" target="_blank" class="imageLink"><img src="DemoImages/dataset.png"></a><br><a href="" target="_blank">🔥Dataset (preparing!)</a>
-        </div>
-          </li>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-
-<!--         <li li class="mygrid">
-          <div class="mygriditem">
-        <a href="" target="_blank" class="imageLink"><img src="static/DemoImages/codalab.png"></a><br><a href="https://codalab.lisn.upsaclay.fr/competitions/15928" target="_blank">Online Evaluation </a>
-        </div>
-          </li> -->
-
-        </ul><br><br>
-      
-    </center>
-    <!-- The dataset is avalibale on <a href="https://drive.google.com/drive/folders/1vChKHzbboP1k6wd6t95guxxURW3nIXBe?usp=sharing" target="_blank">Google Drive</a>, please kindly refer to <a href="https://github.com/shilinyan99/PanoVOS" target="_blank"><b>PanoVOS</b></a> for more details.
-    <pre><code><b>🚀 Download the dataset using <a href="https://pypi.org/project/gdown/" target="_blank">gdown</a> command:</b>
-  🎉 test.zip 5.88 GB
-  gdown https://drive.google.com/uc?id=178E1TYK7tgj-FXzgnjJyx9gZs2GhQBqr</code></pre> -->
-  
-    </div>
-
 
 <!--BibTex citation -->
-  <section class="section" id="Citation">
+  <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
-      <h2 class="title">Citation</h2>
-      Please consider to cite PanoVOS if it helps your research.
+      <h2 class="title">BibTeX</h2>
+      Please consider to cite AIDE if it helps your research.
       <pre><code>@article{yan2024sanity,
   title={A Sanity Check for AI-generated Image Detection},
   author={Yan, Shilin and Li, Ouxiang and Cai, Jiayin and Hao, Yanbin and Jiang, Xiaolong and Hu, Yao and Xie, Weidi},
