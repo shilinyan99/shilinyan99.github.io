@@ -84,6 +84,8 @@
                 <span class="author-block">
                   <a href="">Xiaohao Xu</a><sup>2</sup>,&nbsp;</span>
                 <span class="author-block">
+                  <a href="">Renrui Zhang</a><sup>3</sup>,&nbsp;</span>
+                <span class="author-block">
                   <a href="">Lingyi Hong</a><sup>1</sup>,&nbsp;</span>
                 <span class="author-block">
                   <a href="" target="_blank">Wenchao Chen</a><sup>1</sup>,&nbsp;</span>
@@ -97,8 +99,10 @@
                     <span class="author-block">
                       <sup>1</sup>Fudan University&nbsp;&nbsp;&nbsp;&nbsp;
                       <sup>2</sup>University of Michigan&nbsp;&nbsp;&nbsp;&nbsp;
-                      <!-- <sup>3</sup>University of Oxford&nbsp;&nbsp;&nbsp;&nbsp;
-                      <sup>4</sup>ByteDance&nbsp;&nbsp;&nbsp;&nbsp;</span> -->
+                      <sup>3</sup>MMLab, CUHK</span>
+                  </div>
+                  <div class="is-size-4 publication-authors" style="margin-top: 6px;">
+                    <span class="author-block"><b>ECCV 2024</b></span>
                   </div>
                   
                   <div class="column has-text-centered">
@@ -271,7 +275,7 @@
         </ul><br><br>
       
     </center>
-    The dataset is avalibale on <a href="https://drive.google.com/drive/folders/1vChKHzbboP1k6wd6t95guxxURW3nIXBe?usp=sharing" target="_blank">Google Drive</a>, please kindly refer to <a href="https://github.com/shilinyan99/PanoVOS" target="_blank"><b>PanoVOS</b></a> for more details.
+    The RGB frames and training annotations are available on <a href="https://drive.google.com/drive/folders/18dki-y3bTdoLcoJgdvKmaiqcqlUfBgyA?usp=drive_link" target="_blank">Google Drive</a>, while the <b>full-frame validation &amp; test ground-truth annotations</b> (<a href="https://github.com/shilinyan99/PanoVOS/raw/main/annotations/val_annotations.zip" target="_blank"><code>val_annotations.zip</code></a> and <a href="https://github.com/shilinyan99/PanoVOS/raw/main/annotations/test_annotations.zip" target="_blank"><code>test_annotations.zip</code></a>) are directly hosted in our <a href="https://github.com/shilinyan99/PanoVOS" target="_blank"><b>GitHub Repository</b></a>.
     <pre><code><b>🚀 Download the dataset using <a href="https://pypi.org/project/gdown/" target="_blank">gdown</a> command:</b>
   🎉 train.zip 5.88 GB
   gdown https://drive.google.com/uc?id=178E1TYK7tgj-FXzgnjJyx9gZs2GhQBqr
@@ -287,9 +291,9 @@
   <div class="container is-max-desktop content">
   <h2 class="title">Evaluation</h2>
     <center>
-        <li li class="mygrid">
+        <li class="mygrid">
           <div class="mygriditem">
-        <a href="https://codalab.lisn.upsaclay.fr/competitions/15928" target="_blank" class="imageLink"><img src="DemoImagesPano/codalab.png"></a><br><a href="https://codalab.lisn.upsaclay.fr/competitions/15928" target="_blank">Online Evaluation (🚀Done!)</a>
+        <a href="https://github.com/shilinyan99/PanoVOS#evaluation" target="_blank" class="imageLink"><img src="DemoImagesPano/github_pad.png"></a><br><a href="https://github.com/shilinyan99/PanoVOS#evaluation" target="_blank">🔥Local Evaluation Toolkit</a>
         </div>
         </li>
     </center><br><br>
@@ -297,15 +301,16 @@
     <font style="line-height:2;">
     ● Following <a href="https://youtube-vos.org/" target="_blank">YouTube-VOS</a>, we use Region Jaccard $\mathcal{J}$ ($\mathcal{J}_{s}$ and $\mathcal{J}_{u}$), Boundary $\mathcal{F}$ measure ($\mathcal{F}_{s}$ and $\mathcal{F}_{u}$), and their mean $\mathcal{J}\&\mathcal{F}$ as the evaluation metrics.<br>
 
-    ● For the validation and test sets, the first-frame annotations are proposed to indicate the objects that will be segmentated. <br>
-
-    ● The validation set online evaluation server is <a href="https://codalab.lisn.upsaclay.fr/competitions/15928">[here]</a> for daily evaluation. (🚀Done!)<br>
-
-    ● The test set online evaluation server is <a href="https://codalab.lisn.upsaclay.fr/competitions/15928">[here]</a> for daily evaluation. (🚀Done!)<br>
-
-
-    <!-- ● <font color="#FF6403">For urgent cases before online server is ready, you could send your predictions to us and we will return the <b><i>J&F</i></b> results to you.</font> -->
+    ● Since the legacy CodaLab server has been sunset, we have open-sourced the <b>full-frame validation &amp; test ground-truth annotations</b> and the <b>official local evaluation toolkit</b> (100% aligned with the ECCV 2024 benchmark) at <a href="https://github.com/shilinyan99/PanoVOS#evaluation" target="_blank">github.com/shilinyan99/PanoVOS</a>.<br>
     </font>
+    <pre><code>git clone https://github.com/shilinyan99/PanoVOS.git
+cd PanoVOS
+
+# Evaluate on Validation set
+python evaluation/evaluation_method.py --set val --results_path /path/to/val_predictions --mp_nums 8
+
+# Evaluate on Test set
+python evaluation/evaluation_method.py --set test --results_path /path/to/test_predictions --mp_nums 8</code></pre>
   </div>
 </section>
 
@@ -314,11 +319,13 @@
     <div class="container is-max-desktop content">
       <h2 class="title">Citation</h2>
       Please consider to cite PanoVOS if it helps your research.
-      <pre><code>@article{yan2023panovos,
+      <pre><code>@inproceedings{yan2024panovos,
   title={PanoVOS: Bridging Non-panoramic and Panoramic Views with Transformer for Video Segmentation},
-  author={Yan, Shilin and Xu, Xiaohao and Hong, Lingyi and Chen, Wenchao and Zhang, Wenqiang and Zhang, Wei},
-  journal={arXiv preprint arXiv:2309.12303},
-  year={2023}
+  author={Yan, Shilin and Xu, Xiaohao and Zhang, Renrui and Hong, Lingyi and Chen, Wenchao and Zhang, Wenqiang and Zhang, Wei},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  pages={346--365},
+  year={2024},
+  publisher={Springer}
 }</code></pre>
     </div>
 </section>
@@ -337,7 +344,7 @@ PanoVOS is licensed under a <a href="https://creativecommons.org/licenses/by-nc-
 <section class="section" id="Contact">
   <div class="container is-max-desktop content">
   <h2 class="title">Contact</h2>
-  Any questions, suggestions and feedback are welcomed. Please concat <a href="mailto:tattoo.ysl@gmail.com" target="_blank">tattoo.ysl@gmail.com</a> 
+  Any questions, suggestions and feedback are welcomed. Please contact <a href="mailto:tattoo.ysl@gmail.com" target="_blank">tattoo.ysl@gmail.com</a>.
   <!-- </center> -->
     </div>
 </section>
@@ -351,7 +358,7 @@ PanoVOS is licensed under a <a href="https://creativecommons.org/licenses/by-nc-
 
           <p>
 
-            <center><font size=2>© Shilin Yan | Last updated: 21/9/2023</font></center>
+            <center><font size=2>© Shilin Yan | ECCV 2024</font></center>
           </p>
 
         </div>
